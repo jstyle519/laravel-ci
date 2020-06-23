@@ -28,14 +28,11 @@ class ArticleControllerTest extends TestCase
 
     public function testAuthCreate()
     {
-        // テストに必要なUserモデルを「準備」
-        $user = factory(User::class)->create(); 
+        $user = factory(User::class)->create();
 
-        // ログインして記事投稿画面にアクセスすることを「実行」
         $response = $this->actingAs($user)
             ->get(route('articles.create'));
 
-        // レスポンスを「検証」
         $response->assertStatus(200)
             ->assertViewIs('articles.create');
     }
